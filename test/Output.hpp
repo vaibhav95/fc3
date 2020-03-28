@@ -10,7 +10,7 @@
   namespace test
   {
     #define OUTPUT_DIR "/mnt/c/Vaibhav/CMU/mini4/fc3/CPP/build/output"
-    #define STUDENT_ID "kramkov"
+    #define STUDENT_ID "vgoel2"
   }
 
 #endif // of __testOutput_hpp__

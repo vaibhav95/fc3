@@ -30,7 +30,7 @@ message("BLAS library:" ${GSL_CBLAS_LIBRARY})
 include_directories(${GSL_INCLUDE_DIRS})
 
 # write your Student ID in ""
-set (STUDENT_ID "kramkov")
+set (STUDENT_ID "vgoel2")
 
 # add subdicretories below, when you need them
 add_subdirectory(cfl)
@@ -40,7 +40,7 @@ add_subdirectory(test_cfl)
 add_subdirectory(prb)
 # add_subdirectory(test_prb)
 
-# add_subdirectory(test_set1)
+add_subdirectory(test_set1)
 # add_subdirectory(test_set2)
 # add_subdirectory(test_set3)
 # add_subdirectory(test_set4)
