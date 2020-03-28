@@ -1,0 +1,19 @@
+set(PROJECT_NAME "cfl")
+
+file(GLOB PROJECT_SOURCE_FILES "Src/*.cpp")
+file(GLOB INCLUDE_FILES "*.hpp" "Inline/*.hpp")
+file(GLOB DOC_FILES "*.hpp")
+add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCE_FILES} ${INCLUDE_FILES})
+
+if(${CFL_DOC} AND Doxygen_FOUND)
+file(MAKE_DIRECTORY "${CFL_DOC_DIR}/${PROJECT_NAME}/html")   
+set(DOXYGEN_PROJECT_NAME ${PROJECT_NAME})
+set(DOXYGEN_TAGFILES ${STD_TAG})
+set(DOXYGEN_GENERATE_TAGFILE "${CFL_DOC_DIR}/cfl/cfl.tag")
+set(DOXYGEN_OUTPUT_DIRECTORY "${CFL_DOC_DIR}/${PROJECT_NAME}")
+doxygen_add_docs(
+  doc-${PROJECT_NAME}
+  ALL
+  ${DOC_FILES}
+  )
+endif()
