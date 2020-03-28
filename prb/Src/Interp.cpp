@@ -78,3 +78,70 @@ Interp NInterp::cspline()
 {
     return Interp(new CsplineInterp());
 }
+
+
+class PolynomialInterpFunction: public GslInterpFunction
+{
+public:
+    PolynomialInterpFunction(const std::vector<double> &rArg, const std::vector<double> &rVal)
+        : GslInterpFunction(rArg,rVal,gsl_interp_polynomial) {}
+};
+
+class PolynomialInterp: public IInterp 
+{
+public:
+    Function interpolate(const std::vector<double> &rArg,
+                                const std::vector<double> &rVal) const
+    {
+        return Function(new PolynomialInterpFunction(rArg, rVal));
+    }
+};
+
+Interp NInterp::polynomial()
+{
+    return Interp(new PolynomialInterp());
+}
+
+class SteffenInterpFunction: public GslInterpFunction
+{
+public:
+    SteffenInterpFunction(const std::vector<double> &rArg, const std::vector<double> &rVal)
+        : GslInterpFunction(rArg,rVal,gsl_interp_steffen) {}
+};
+
+class SteffenInterp: public IInterp 
+{
+public:
+    Function interpolate(const std::vector<double> &rArg,
+                                const std::vector<double> &rVal) const
+    {
+        return Function(new SteffenInterpFunction(rArg, rVal));
+    }
+};
+
+Interp NInterp::steffen() 
+{
+    return Interp(new SteffenInterp());
+}
+
+class AkimaInterpFunction: public GslInterpFunction
+{
+public:
+    AkimaInterpFunction(const std::vector<double> &rArg, const std::vector<double> &rVal)
+        : GslInterpFunction(rArg,rVal,gsl_interp_akima) {}
+};
+
+class AkimaInterp: public IInterp 
+{
+public:
+    Function interpolate(const std::vector<double> &rArg,
+                                const std::vector<double> &rVal) const
+    {
+        return Function(new AkimaInterpFunction(rArg, rVal));
+    }
+};
+
+Interp NInterp::akima() 
+{
+    return Interp(new AkimaInterp());
+}
