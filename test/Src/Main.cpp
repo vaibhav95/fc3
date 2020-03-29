@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <numeric>
 #include <functional>
+#include <random>
 #include "cfl/Macros.hpp"
 #include "test/Output.hpp"
 #include "test/Main.hpp"
@@ -32,9 +33,11 @@ std::valarray<double> test::getRandArg(double dL, double dR, unsigned iN)
 {
   ASSERT(iN > 0);
   std::valarray<double> uResult(iN);
+  std::minstd_rand uGen(1);
+  std::uniform_real_distribution<double> uRand(dL,dR);
   for (unsigned iI = 0; iI < iN; iI++)
   {
-    uResult[iI] = dL + (dR - dL) * std::rand() / RAND_MAX;
+    uResult[iI] = uRand(uGen);
   }
   std::sort(begin(uResult), end(uResult));
   POSTCONDITION((dL < uResult[0]) && (uResult[uResult.size() - 1] < dR));
