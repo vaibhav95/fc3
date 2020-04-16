@@ -1,3 +1,4 @@
 build/
 actual_outputs/
 output_checker.py
+.vscode/
